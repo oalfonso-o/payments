@@ -1,0 +1,9 @@
+.vscode
+__pycache__
+.env
+
+backend/venv
+backend/*egg-info
+
+frontend/node_modules/*
+

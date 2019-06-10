@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    ports:
+      - "54320:5432"
+  psql:
+    image: postgres
+    depends_on:
+      - db
+    environment:
+      - PGUSER=postgres
+      - PGHOST=db
+    command: psql
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile-django
+    volumes:
+      - ./backend/:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    command: python manage.py runserver 0.0.0.0:8000
+  node:
+    build:
+      context: .
+      dockerfile: Dockerfile-node
+    ports:
+      - "8080:8080"
+    command: npm run serve

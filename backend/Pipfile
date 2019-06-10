@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+oalfonso-payments = {extras = ["dev"],editable = true,path = "."}
+pudb = "*"
+ipython = "*"
+psycopg2-binary = "<2.9"
+
+
+[requires]
+python_version = "3.7"
+
+[scripts]
+serve = "python manage.py runserver 0.0.0.0:8000"
+makemigrations = "python manage.py makemigrations"
+migrate = "python manage.py migrate"
+init = "python manage.py loaddata fixtures/initial.json"
+tests = "python manage.py test"
+linter = "python -m flake8 ."
+build = "pip wheel --no-deps ."
